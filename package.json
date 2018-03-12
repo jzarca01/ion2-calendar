@@ -1,6 +1,6 @@
 {
   "name": "custom-ion2-calendar",
-  "version": "2.1.6-beta.2",
+  "version": "2.1.7",
   "description": "Date picker component customized from ion2-calendar",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
