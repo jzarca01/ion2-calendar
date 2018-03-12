@@ -1,7 +1,7 @@
 {
-  "name": "ion2-calendar",
+  "name": "custom-ion2-calendar",
   "version": "2.1.6-beta.2",
-  "description": "A date picker component for ionic2 ",
+  "description": "Date picker component customized from ion2-calendar",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
@@ -11,13 +11,10 @@
     "demo:serve": "cd ./demo && ionic serve",
     "build": "run-s clean:dist build:copy-sources build:ts && gulp copy-scss ",
     "build:ts": "tsc && ngc",
-    "build:copy-sources": "gulp copy-sources",
-    "test": "echo \"Error: no test specified\"",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "build:copy-sources": "gulp copy-sources"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/HsuanXyz/ion2-calendar.git"
+  "dependencies": {
+    "moment": "^2.19.3"
   },
   "devDependencies": {
     "@angular/common": "4.4.6",
@@ -40,15 +37,5 @@
     "typescript": "^2.5.3",
     "zone.js": "0.8.18"
   },
-  "keywords": [
-    "ionic2",
-    "calendar",
-    "Datepicker",
-    "date-range"
-  ],
-  "author": "HsuanLee",
-  "license": "MIT",
-  "dependencies": {
-    "moment": "^2.19.3"
-  }
+  "author": "Valdo Ghafoor <valdo.ghafoor@js-republic.com>"
 }

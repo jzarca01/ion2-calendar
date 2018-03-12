@@ -150,18 +150,7 @@ export class MonthComponent implements ControlValueAccessor, AfterViewInit {
 
   isSelected(time: number): boolean {
     if (Array.isArray(this._date)) {
-      if (this.pickMode !== pickModes.MULTI) {
-        if (this._date[0] !== null) {
-          return time === this._date[0].time
-        }
-
-        if (this._date[1] !== null) {
-          return time === this._date[1].time
-        }
-      } else {
-        return this._date.findIndex(e => e !== null && e.time === time) !== -1;
-      }
-
+      return this._date.findIndex(e => e !== null && e.time === time) !== -1;
     } else {
       return false
     }

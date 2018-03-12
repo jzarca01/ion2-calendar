@@ -126,14 +126,13 @@ export class CalendarModal implements OnInit {
   }
 
   initDefaultDate(): void {
-    const { pickMode, defaultDate, defaultDateRange, defaultDates } = this._d;
-    switch (pickMode) {
-      case pickModes.SINGLE:
+    const { pickMode, defaultDate, defaultDateRange } = this._d;
+
+    if(pickMode === pickModes.SINGLE) {
         if (defaultDate) {
           this.datesTemp[0] = this.calSvc.createCalendarDay(this._getDayTime(defaultDate), this._d);
         }
-        break;
-      case pickModes.RANGE:
+      } else {
         if (defaultDateRange) {
           if (defaultDateRange.from) {
             this.datesTemp[0] = this.calSvc.createCalendarDay(this._getDayTime(defaultDateRange.from), this._d);
@@ -142,14 +141,6 @@ export class CalendarModal implements OnInit {
             this.datesTemp[1] = this.calSvc.createCalendarDay(this._getDayTime(defaultDateRange.to), this._d);
           }
         }
-        break;
-      case pickModes.MULTI:
-        if (defaultDates && defaultDates.length) {
-          this.datesTemp = defaultDates.map(e => this.calSvc.createCalendarDay(this._getDayTime(e), this._d));
-        }
-        break;
-      default:
-        this.datesTemp = [null, null]
     }
   }
 
@@ -163,11 +154,11 @@ export class CalendarModal implements OnInit {
   }
 
   onChange(data: any): void {
-    const { pickMode, autoDone } = this._d;
+    const { autoDone } = this._d;
     this.datesTemp = data;
     this.ref.detectChanges();
 
-    if (pickMode !== pickModes.MULTI && autoDone && this.canDone()) {
+    if (autoDone && this.canDone()) {
       this.done();
     }
   }
@@ -191,16 +182,12 @@ export class CalendarModal implements OnInit {
     }
     const { pickMode } = this._d;
 
-    switch (pickMode) {
-      case pickModes.SINGLE:
+    if (pickMode === pickModes.SINGLE) {
         return !!(this.datesTemp[0] && this.datesTemp[0].time);
-      case pickModes.RANGE:
+    } else {
         return !!(this.datesTemp[0] && this.datesTemp[1]) && !!(this.datesTemp[0].time && this.datesTemp[1].time);
-      case pickModes.MULTI:
-        return this.datesTemp.length > 0 && this.datesTemp.every(e => !!e && !!e.time);
-      default:
-        return false;
     }
+
   }
 
   nextMonth(infiniteScroll: InfiniteScroll): void {

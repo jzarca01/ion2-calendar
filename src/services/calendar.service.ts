@@ -230,21 +230,13 @@ export class CalendarService {
 
   wrapResult(original: CalendarDay[], pickMode: string) {
     let result: any;
-    switch (pickMode) {
-      case pickModes.SINGLE:
+    if (pickMode === pickModes.SINGLE) {
         result = this.multiFormat(original[0].time);
-        break;
-      case pickModes.RANGE:
+    } else {
         result = {
           from: this.multiFormat(original[0].time),
           to: this.multiFormat(original[1].time)
-        };
-        break;
-      case pickModes.MULTI:
-        result = original.map(e => this.multiFormat(e.time));
-        break;
-      default:
-        result = original;
+        }
     }
     return result;
   }
