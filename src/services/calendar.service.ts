@@ -107,7 +107,7 @@ export class CalendarService {
   findDayConfig(day: any, opt: CalendarModalOptions): any {
 
     if (opt.daysConfig.length <= 0) return null;
-    return opt.daysConfig.find((n) => day.isSame(n.date, 'day'))
+    return opt.daysConfig.find((n) => day.isSame(n.date + 1, 'day'))
   }
 
   createCalendarDay(time: number, opt: CalendarModalOptions, month?: number): CalendarDay {
